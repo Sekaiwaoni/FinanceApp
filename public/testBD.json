@@ -1,236 +1,427 @@
 [
     {
-        "name": "Даниил(1)",
         "login": "dan-kuz201@yandex.ru",
+        "name": "Даниил(1)",
         "password": "47ef20207489b775fa4cdcac3c394b517ab22d7460237ae3df1ac0e8963699d6",
         "token": "ef3f9f13-378d-4893-9d00-83d42f6386cc"
     },
     {
-        "name": "Даниил(2)",
         "login": "+7(962)599-71-73",
+        "name": "Даниил(2)",
         "password": "47ef20207489b775fa4cdcac3c394b517ab22d7460237ae3df1ac0e8963699d6",
         "token": "ef3f9f13-378d-4893-9d00-83d42f6386cc"
     },
     {
-        "name": "Даниил",
         "login": "dan-kuz20111@yandex.ru",
+        "name": "Даниил",
         "password": "47ef20207489b775fa4cdcac3c394b517ab22d7460237ae3df1ac0e8963699d6",
         "token": "10816902-00d5-4629-857a-1eb231f69cdd"
     },
     {
-        "login": "aboba@yandex.ru",
-        "name": "Imposter",
-        "password": "47ef20207489b775fa4cdcac3c394b517ab22d7460237ae3df1ac0e8963699d6",
-        "token": "c6036215-c02b-43e8-abdf-3e81f4a0908d",
+        "budgetControl": {
+            "active": true,
+            "amount": 50000
+        },
+        "budgetLimits": [
+            {
+                "amount": 5000,
+                "category": "food",
+                "id": "1754225514863"
+            },
+            {
+                "amount": 5000,
+                "category": "transport",
+                "id": "1754225527487"
+            },
+            {
+                "amount": 5000,
+                "category": "entertainment",
+                "id": "1754225536991"
+            },
+            {
+                "amount": 5000,
+                "category": "shopping",
+                "id": "1754225541327"
+            },
+            {
+                "amount": 5000,
+                "category": "bills",
+                "id": "1754225545495"
+            },
+            {
+                "amount": 5000,
+                "category": "health",
+                "id": "1754225553343"
+            },
+            {
+                "id": "1754326196970",
+                "category": "other",
+                "amount": 5000
+            }
+        ],
         "expenses": [
             {
-                "id": 1754015945057,
-                "title": "Other",
                 "amount": 3000,
                 "category": "other",
                 "date": "2025-08-01",
-                "description": ""
+                "description": "",
+                "id": 1754015945057,
+                "title": "Other"
             },
             {
-                "id": 1753900783065,
-                "title": "Продукт",
                 "amount": 3000,
                 "category": "food",
                 "date": "2025-07-30",
-                "description": "test 1"
+                "description": "test 1",
+                "id": 1753900783065,
+                "title": "Продукт"
             },
             {
-                "id": 1753900811912,
-                "title": "Car",
                 "amount": 2000,
                 "category": "transport",
                 "date": "2025-07-22",
-                "description": "test 2"
+                "description": "test 2",
+                "id": 1753900811912,
+                "title": "Car"
             },
             {
-                "id": 1753900832736,
-                "title": "Game",
                 "amount": 1000,
                 "category": "entertainment",
                 "date": "2025-07-30",
-                "description": "test 3"
+                "description": "test 3",
+                "id": 1753900832736,
+                "title": "Game"
             },
             {
-                "id": 1753900869448,
-                "title": "Shopping",
                 "amount": 10000,
                 "category": "shopping",
                 "date": "2025-07-29",
-                "description": "test 4"
+                "description": "test 4",
+                "id": 1753900869448,
+                "title": "Shopping"
             },
             {
-                "id": 1753900931990,
-                "title": "Medicine",
                 "amount": 5000,
                 "category": "health",
                 "date": "2025-07-30",
-                "description": "test 5"
+                "description": "test 5",
+                "id": 1753900931990,
+                "title": "Medicine"
             },
             {
-                "id": 1753900952591,
-                "title": "Bills",
                 "amount": 4500,
                 "category": "bills",
                 "date": "2025-07-30",
-                "description": "test 6"
+                "description": "test 6",
+                "id": 1753900952591,
+                "title": "Bills"
             },
             {
-                "id": 1753900783065,
-                "title": "Продукт",
                 "amount": 3000,
                 "category": "food",
                 "date": "2025-07-30",
-                "description": "test 1"
+                "description": "test 1",
+                "id": 1753900783065,
+                "title": "Продукт"
             },
             {
-                "id": 1753900811912,
-                "title": "Car",
                 "amount": 2000,
                 "category": "transport",
                 "date": "2025-07-22",
-                "description": "test 2"
+                "description": "test 2",
+                "id": 1753900811912,
+                "title": "Car"
             },
             {
-                "id": 1753900832736,
-                "title": "Game",
                 "amount": 1000,
                 "category": "entertainment",
                 "date": "2025-07-30",
-                "description": "test 3"
+                "description": "test 3",
+                "id": 1753900832736,
+                "title": "Game"
             },
             {
-                "id": 1753900869448,
-                "title": "Shopping",
                 "amount": 10000,
                 "category": "shopping",
                 "date": "2025-07-29",
-                "description": "test 4"
+                "description": "test 4",
+                "id": 1753900869448,
+                "title": "Shopping"
             },
             {
-                "id": 1753900931990,
-                "title": "Medicine",
                 "amount": 5000,
                 "category": "health",
                 "date": "2025-07-30",
-                "description": "test 5"
+                "description": "test 5",
+                "id": 1753900931990,
+                "title": "Medicine"
             },
             {
-                "id": 1753900952591,
-                "title": "Bills",
                 "amount": 4500,
                 "category": "bills",
                 "date": "2025-07-30",
-                "description": "test 6"
+                "description": "test 6",
+                "id": 1753900952591,
+                "title": "Bills"
             },
             {
-                "id": 1640995200000,
-                "title": "Новогодние подарки",
                 "amount": 15000,
                 "category": "other",
                 "date": "2025-01-01",
-                "description": "Подарки родным"
+                "description": "Подарки родным",
+                "id": 1640995200000,
+                "title": "Новогодние подарки"
             },
             {
-                "id": 1643673600000,
-                "title": "Аренда квартиры",
                 "amount": 30000,
                 "category": "bills",
                 "date": "2025-02-01",
-                "description": "Ежемесячная аренда"
+                "description": "Ежемесячная аренда",
+                "id": 1643673600000,
+                "title": "Аренда квартиры"
             },
             {
-                "id": 1646092800000,
-                "title": "Ремонт авто",
                 "amount": 25000,
                 "category": "transport",
                 "date": "2025-03-05",
-                "description": "Замена масла и фильтров"
+                "description": "Замена масла и фильтров",
+                "id": 1646092800000,
+                "title": "Ремонт авто"
             },
             {
-                "id": 1648771200000,
-                "title": "Страхование",
                 "amount": 12000,
                 "category": "bills",
                 "date": "2025-04-01",
-                "description": "Годовое страхование"
+                "description": "Годовое страхование",
+                "id": 1648771200000,
+                "title": "Страхование"
             },
             {
-                "id": 1651363200000,
-                "title": "Отпуск",
                 "amount": 50000,
                 "category": "transport",
                 "date": "2025-05-01",
-                "description": "Билеты на море"
+                "description": "Билеты на море",
+                "id": 1651363200000,
+                "title": "Отпуск"
             },
             {
-                "id": 1654041600000,
-                "title": "Ноутбук",
                 "amount": 75000,
                 "category": "shopping",
                 "date": "2025-06-01",
-                "description": "Новый MacBook Pro"
+                "description": "Новый MacBook Pro",
+                "id": 1654041600000,
+                "title": "Ноутбук"
             },
             {
-                "id": 1656633600000,
-                "title": "Лечение",
                 "amount": 18000,
                 "category": "health",
                 "date": "2025-07-15",
-                "description": "Стоматолог"
+                "description": "Стоматолог",
+                "id": 1656633600000,
+                "title": "Лечение"
             },
             {
-                "id": 1659312000000,
-                "title": "Книги",
                 "amount": 5000,
                 "category": "shopping",
                 "date": "2025-08-01",
-                "description": "Учебные материалы"
+                "description": "Учебные материалы",
+                "id": 1659312000000,
+                "title": "Книги"
             },
             {
-                "id": 1754225788246,
-                "title": "ЖКХ",
                 "amount": 2000,
                 "category": "bills",
                 "date": "2025-08-03",
-                "description": ""
+                "description": "",
+                "id": 1754225788246,
+                "title": "ЖКХ"
             },
             {
-                "id": 1754225810077,
-                "title": "Лекарства",
                 "amount": 4000,
                 "category": "health",
                 "date": "2025-08-03",
-                "description": ""
+                "description": "",
+                "id": 1754225810077,
+                "title": "Лекарства"
             },
             {
-                "id": 1754225858781,
-                "title": "GAMExLAUNGE",
                 "amount": 6000,
                 "category": "entertainment",
                 "date": "2025-08-03",
-                "description": ""
+                "description": "",
+                "id": 1754225858781,
+                "title": "GAMExLAUNGE"
             },
             {
-                "id": 1754225919228,
-                "title": "ВкусВилл",
                 "amount": 10000,
                 "category": "food",
                 "date": "2025-08-03",
-                "description": ""
+                "description": "",
+                "id": 1754225919228,
+                "title": "ВкусВилл"
             },
             {
-                "id": 1754307803341,
-                "title": "Метро",
                 "amount": 500,
                 "category": "transport",
                 "date": "2025-08-04",
-                "description": ""
+                "description": "",
+                "id": 1754307803341,
+                "title": "Метро"
+            },
+            {
+                "amount": 2000,
+                "category": "transport",
+                "date": "2025-08-04",
+                "description": "",
+                "id": 1754311078060,
+                "title": "Бензин"
             }
-        ]
+        ],
+        "incomes": [
+            {
+                "amount": 40000,
+                "category": "freelance",
+                "date": "2025-07-31",
+                "description": "test 1",
+                "id": 1753929433711,
+                "title": "Выплата за рекламу"
+            },
+            {
+                "amount": 22000,
+                "category": "salary",
+                "date": "2025-07-31",
+                "description": "test 2",
+                "id": 1753929545870,
+                "title": "Аванс"
+            },
+            {
+                "amount": 35000,
+                "category": "salary",
+                "date": "2025-07-31",
+                "description": "",
+                "id": 1753929567589,
+                "title": "Зарплата "
+            },
+            {
+                "amount": 4000,
+                "category": "investments",
+                "date": "2025-07-31",
+                "description": "test 4",
+                "id": 1753929603504,
+                "title": "Инвестиции"
+            },
+            {
+                "amount": 30000,
+                "category": "business",
+                "date": "2025-07-31",
+                "description": "",
+                "id": 1753929757482,
+                "title": "Novel.shop"
+            },
+            {
+                "amount": 10000,
+                "category": "gifts",
+                "date": "2025-07-31",
+                "description": "",
+                "id": 1753929810083,
+                "title": "Новый год"
+            },
+            {
+                "amount": 3000,
+                "category": "other",
+                "date": "2025-08-01",
+                "description": "",
+                "id": 1754015945057,
+                "title": "Other"
+            },
+            {
+                "amount": 120000,
+                "category": "salary",
+                "date": "2025-01-01",
+                "description": "Основная зарплата",
+                "id": 1640995200001,
+                "title": "Зарплата"
+            },
+            {
+                "amount": 40000,
+                "category": "freelance",
+                "date": "2025-02-01",
+                "description": "Разработка сайта",
+                "id": 1643673600001,
+                "title": "Фриланс"
+            },
+            {
+                "amount": 15000,
+                "category": "investments",
+                "date": "2025-03-05",
+                "description": "Дивиденды",
+                "id": 1646092800001,
+                "title": "Инвестиции"
+            },
+            {
+                "amount": 30000,
+                "category": "salary",
+                "date": "2025-04-01",
+                "description": "Квартальная премия",
+                "id": 1648771200001,
+                "title": "Премия"
+            },
+            {
+                "amount": 25000,
+                "category": "business",
+                "date": "2025-05-01",
+                "description": "Арендная плата",
+                "id": 1651363200001,
+                "title": "Сдача квартиры"
+            },
+            {
+                "amount": 350000,
+                "category": "other",
+                "date": "2025-06-01",
+                "description": "Продажа старой машины",
+                "id": 1654041600001,
+                "title": "Продажа авто"
+            },
+            {
+                "amount": 20000,
+                "category": "freelance",
+                "date": "2025-07-15",
+                "description": "IT-консалтинг",
+                "id": 1656633600001,
+                "title": "Консультация"
+            },
+            {
+                "amount": 30000,
+                "category": "freelance",
+                "date": "2025-08-01",
+                "description": "Проведение обучения",
+                "id": 1659312000001,
+                "title": "Курсы"
+            }
+        ],
+        "login": "aboba@yandex.ru",
+        "name": "Imposter",
+        "password": "47ef20207489b775fa4cdcac3c394b517ab22d7460237ae3df1ac0e8963699d6",
+        "savingGoals": [
+            {
+                "createdAt": "2025-08-02T22:55:57.083Z",
+                "currentAmount": 0,
+                "id": "1754175357083",
+                "monthlyPayment": 30000,
+                "name": "Автомобиль",
+                "targetAmount": 4000000,
+                "targetDate": "2029-12-03"
+            },
+            {
+                "createdAt": "2025-08-03T13:29:49.739Z",
+                "currentAmount": 467500,
+                "id": "1754227789739",
+                "monthlyPayment": 300000,
+                "name": "Автомобиль",
+                "targetAmount": 3000000,
+                "targetDate": "2029-12-03"
+            }
+        ],
+        "token": "c6036215-c02b-43e8-abdf-3e81f4a0908d"
     }
 ]

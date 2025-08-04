@@ -32,6 +32,14 @@ if (!isAuthenticated) {
         <RouterView />
     </main>
     <div class="guest" v-else>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <a href="/login" style="font-size: 2rem; font-weight: 700; color: palevioletred; text-decoration: none;">
+                Вы не авторизованы!
+            </a><br> 
+            <a href="/login" style="font-size: 2rem; font-weight:700; color: palevioletred; text-decoration: none;">
+                Нажмите на текст чтобы авторизоваться!
+            </a>
+        </div>
     </div>
 </template>
 <style scoped>

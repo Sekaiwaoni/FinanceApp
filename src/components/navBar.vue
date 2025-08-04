@@ -19,7 +19,8 @@
         <div class="avatar" :style="{ backgroundImage: `url(${avatarUrl})` }"></div>
         <transition name="fade">
           <div v-if="!collapsed" class="profile-info">
-            <h3 class="username">Finance.app</h3>
+            <h3 class="username" v-if="username">{{username}}</h3>
+            <h3 class="username" v-else>Finance.app</h3>
             <p class="user-email">Finance.app demo</p>
           </div>
         </transition>
@@ -113,7 +114,7 @@ const menuItems = ref([
   { name: 'Главная', path: '/', icon: '/House.svg' },
   { name: 'Расходы', path: '/expenses', icon: '/Dashboard.svg' },
   { name: 'Доходы', path: '/salary', icon: '/Shipping.svg' },
-  { name: 'Мой бюджет', path: '/myfinance', icon: '/Chevron -Right.svg' },
+  { name: 'Мой бюджет', path: '/myfinances', icon: '/Chevron -Right.svg' },
   { name: 'Статистика', path: '/statistics', icon: '/Chart.svg' }
 ])
 
@@ -128,6 +129,34 @@ const checkScreenSize = () => {
   if (isMobile.value) collapsed.value = true
 }
 
+const username = ref()
+let error = ref()
+async function checkUserInfo() {
+  try {
+    const response = await fetch('http://127.0.0.1:5000/testBD')
+    if (!response.ok) {
+      error.value = 'Ошибка загрузки базы пользователей'
+      return
+    }
+    const token = localStorage.getItem("token") 
+    const users = await response.json()
+    const user = users.find(
+      u => u.token === token
+    )
+    
+    if (!user) {
+      error.value = 'Неверный токен'
+      return
+    }
+    username.value = user.name
+    document.getElementsByClassName()
+    console.log(username.value)
+  } catch (e) {
+    error.value = 'Ошибка при входе'
+  }
+}
+
+checkUserInfo()
 // Наблюдатель за изменением темы
 watch(darkMode, (newVal) => {
   document.documentElement.setAttribute('data-theme', newVal ? 'dark' : 'light')

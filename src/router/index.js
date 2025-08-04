@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import ExpensesView from '@/views/ExpensesView.vue'
 import SalaryView from '@/views/SalaryView.vue'
 import StatisticsView from '@/views/StatisticsView.vue'
+import MyFinancesView from '@/views/MyFinancesView.vue'
+import Home from '@/components/Home.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +53,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: StatisticsView,
+    },
+    {
+      path: '/myfinances',
+      name: 'myfinances',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: MyFinancesView,
+    },
+    {
+      path: '/home',
+      name: 'home',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: Home,
     }
   ],
 })

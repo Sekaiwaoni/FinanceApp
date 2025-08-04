@@ -61,6 +61,12 @@ export function useAuth() {
 
   // Функция выхода из системы
   function logout() {
+    saveToBd({expenses: JSON.parse(localStorage.getItem("expenses")),
+              incomes: JSON.parse(localStorage.getItem("incomes")),
+              budgetLimits: JSON.parse(localStorage.getItem("budgetLimits")),
+              budgetControl: JSON.parse(localStorage.getItem("budgetControl")),
+              savingGoals: JSON.parse(localStorage.getItem("savingGoals"))
+    })
     localStorage.removeItem('token')
     isAuthenticated.value = false
     currentUser.value = null
@@ -434,6 +440,85 @@ export function useAuth() {
     }
   }
 
+  async function saveToBd(opName) {
+    const token = localStorage.getItem("token")
+    let users
+    try {
+        const response = await fetch('http://127.0.0.1:5000/testBD')
+        if (response.ok) {
+          users = await response.json()
+        }
+      } catch (e) {
+        // Если файл не найден или ошибка, начинаем с пустого массива
+        console.error('Файл не найден или ошибка подключения')
+        return
+      }
+    // Проверяем, существует ли уже пользователь с таким токеном
+    const existingUser = users.find(u => u.token === token)
+    if (!existingUser) {
+      error.value = 'Пользователь не существует'
+      return
+    }
+    if ("expenses" in opName) {
+      users.find(u => u === existingUser).expenses = opName.expenses
+    }
+    if ("incomes" in opName) {
+      users.find(u => u === existingUser).incomes = opName.incomes
+    }
+    if ("budgetLimits" in opName) {
+      users.find(u => u === existingUser).budgetLimits = opName.budgetLimits
+    }
+    if ("savingGoals" in opName) {
+      users.find(u => u === existingUser).savingGoals = opName.savingGoals
+    }
+    if ("budgetControl" in opName) {
+      users.find(u => u === existingUser).budgetControl = opName.budgetControl
+    }
+    
+
+    try {
+      // Сохраняем обновленный массив пользователей обратно в testBD.json
+      await fetch('http://127.0.0.1:5000/testBD', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(users)
+      })
+    }
+    catch (e) {
+      console.error('Ошибка обновления бд')
+    }
+ }
+
+  async function getDataFromBd() {
+    const token = localStorage.getItem("token")
+    let users
+    try {
+        const response = await fetch('http://127.0.0.1:5000/testBD')
+        if (response.ok) {
+          users = await response.json()
+        }
+      } catch (e) {
+        // Если файл не найден или ошибка, начинаем с пустого массива
+        console.error('Файл не найден или ошибка подключения')
+        return
+      }
+    // Проверяем, существует ли уже пользователь с таким токеном
+    const existingUser = users.find(u => u.token === token)
+    if (!existingUser) {
+      error.value = 'Пользователь не существует'
+      return
+    }
+    localStorage.setItem("expenses", JSON.stringify(users.find(u => u === existingUser).expenses))
+
+    localStorage.setItem("incomes", JSON.stringify(users.find(u => u === existingUser).incomes))
+
+    localStorage.setItem("budgetLimits", JSON.stringify(users.find(u => u === existingUser).budgetLimits))
+
+    localStorage.setItem("savingGoals", JSON.stringify(users.find(u => u === existingUser).savingGoals))
+
+    localStorage.setItem("budgetControl", JSON.stringify(users.find(u => u === existingUser).budgetControl))
+ }
+
   // Простая функция хеширования пароля (SHA-256)
   async function hashPassword(password) {
     // 1. Создаём TextEncoder для преобразования строки пароля в массив байтов (Uint8Array).
@@ -469,6 +554,8 @@ export function useAuth() {
     handlePasswordChange,
     handleLoginInput,
     handleLoginKeydown,
-    hashPassword
+    hashPassword,
+    saveToBd,
+    getDataFromBd
   }
 } 

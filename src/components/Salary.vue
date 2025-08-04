@@ -1,6 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, nextTick, watch, onUnmounted, reactive } from 'vue'
 import { Chart, ArcElement, Tooltip, Legend, PieController } from 'chart.js'
+import { useAuth } from '@/composables/useAuth';
+
+const { 
+  saveToBd,
+  getDataFromBd
+} = useAuth()
 
 // Регистрируем необходимые компоненты Chart.js
 Chart.register(ArcElement, Tooltip, Legend, PieController)
@@ -169,6 +175,7 @@ const deleteIncome = (id) => {
 
 const saveIncomes = () => {
   localStorage.setItem('incomes', JSON.stringify(allIncomes.value))
+  saveToBd({incomes: allIncomes.value})
 }
 
 const filterByMonth = (expensesArray) => {
@@ -189,6 +196,7 @@ const filterByMonth = (expensesArray) => {
 }
 
 const loadIncomes = () => {
+  getDataFromBd()
   const saved = localStorage.getItem('incomes')
    try {
     // Если данные есть - парсим их, иначе используем пустой массив
@@ -305,7 +313,7 @@ onUnmounted(() => {
 })
 // Следим за изменениями данных для обновления диаграммы
 watch(
-  [month, year], () => {
+  [month, year, incomes.value], () => {
   console.log('Данные обновлены!', loadIncomes(), updateChart());
   },
   () => JSON.stringify(chartData.value), // Следим за строковым представлением данных

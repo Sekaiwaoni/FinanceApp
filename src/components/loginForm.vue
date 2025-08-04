@@ -45,7 +45,7 @@ async function submit() {
     // await api.login({ login: form.login, password: hashedPassword })
     console.log('Login:', form.login)
     console.log('Hashed password:', hashedPassword)
-    const response = await fetch('/testBD.json')
+    const response = await fetch('http://127.0.0.1:5000/testBD')
     if (!response.ok) {
       error.value = 'Ошибка загрузки базы пользователей'
       return

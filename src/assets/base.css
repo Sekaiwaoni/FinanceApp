@@ -36,9 +36,12 @@
   --section-gap: 160px;
 }
 
+
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
+    --color-background: radial-gradient(farthest-corner at 60vw 40vw, #421ba4 3%, #0a031d 68%);;
+    /* --color-background: url('/Frame 2.svg'); */
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
 

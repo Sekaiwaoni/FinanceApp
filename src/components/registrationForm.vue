@@ -75,7 +75,7 @@ async function submit() {
     // Загружаем текущих пользователей из testBD.json
     let users = []
     try {
-      const response = await fetch('/testBD.json')
+      const response = await fetch('http://127.0.0.1:5000/testBD')
       if (response.ok) {
         users = await response.json()
       }

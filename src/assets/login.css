@@ -28,7 +28,7 @@ p {
 }
 
 .active {
-    color: #000;
+    color: #ffffff;
 }
 
 .inactive {
@@ -81,7 +81,7 @@ input[type="text"] {
     height: 57px;
     font-size: 28px;
     text-decoration: none;
-    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    box-shadow: 10px 30px 30px 10px rgba(0, 0, 0, 0.162), 0 1px 3px rgba(0, 0, 0, 0.726);
     cursor: pointer;
     user-select: none;
     appearance: none;
@@ -110,7 +110,8 @@ input[type="text"] {
 .modal-container {
     display: block;
     width: 605px;
-    background-color: #fff;
+    background-color: #ffffff16;
+    border: #ffffff21 solid;
     border-radius: 20px;
     margin: 50px auto;
     padding: 51px 0 60px;

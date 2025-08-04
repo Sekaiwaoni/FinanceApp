@@ -1,6 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, nextTick, watch, onUnmounted, reactive } from 'vue'
 import { Chart, ArcElement, Tooltip, Legend, PieController } from 'chart.js'
+import { useAuth } from '@/composables/useAuth';
+
+const {
+  saveToBd,
+  getDataFromBd
+} = useAuth()
 
 // Регистрируем необходимые компоненты Chart.js
 Chart.register(ArcElement, Tooltip, Legend, PieController)
@@ -170,8 +176,8 @@ const deleteExpense = (id) => {
 
 const saveExpenses = () => {
   localStorage.setItem('expenses', JSON.stringify(allExpenses.value))
+  saveToBd({expenses :  allExpenses.value})
 }
-
 
 const filterByMonth = (expensesArray) => {
   // Проверяем что это массив
@@ -191,6 +197,7 @@ const filterByMonth = (expensesArray) => {
 }
 
 const loadExpenses = () => {
+  getDataFromBd()
   const saved = localStorage.getItem('expenses')
   try {
     // Если данные есть - парсим их, иначе используем пустой массив

@@ -12,8 +12,11 @@
           <h2>Динамика доходов</h2>
           <canvas ref="incomeTrendChart"></canvas>
         </div>
+        <div class="chart-card">
+          <h2>Топ-5 расходов</h2>
+          <canvas ref="topExpensesChart"></canvas>
+        </div>
       </div>
-
       <!-- Колонка с расходами -->
       <div class="charts-column">
         <div class="chart-card">
@@ -24,6 +27,10 @@
           <h2>Сравнение доходов/расходов</h2>
           <canvas ref="comparisonChart"></canvas>
         </div>
+        <div class="chart-card">
+          <h2>Накопления</h2>
+          <canvas ref="BalanceChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
@@ -32,6 +39,11 @@
 <script>
 import { ref, onMounted } from 'vue';
 import Chart from 'chart.js/auto';
+import { useAuth } from '@/composables/useAuth';
+
+const {
+  getDataFromBd
+ } = useAuth()
 
 export default {
   setup() {
@@ -39,6 +51,8 @@ export default {
     const expenseChart = ref(null);
     const incomeTrendChart = ref(null);
     const comparisonChart = ref(null);
+    const topExpensesChart = ref(null);
+    const BalanceChart = ref(null);
 
     const chartColors = [
         // Основные цвета с градиентными переходами
@@ -53,6 +67,7 @@ export default {
     ];
 
     const getData = () => {
+      getDataFromBd()
       const incomes = JSON.parse(localStorage.getItem('incomes')) || [];
       const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
       return { incomes, expenses };
@@ -113,12 +128,27 @@ export default {
       };
     };
 
+    const hitCorrectionPlugin = {
+      id: 'hitCorrection',
+      beforeEvent(chart, args) {
+        if (args.event.type === 'mousemove') {
+          const canvas = chart.ctx.canvas;
+          const rect = canvas.getBoundingClientRect();
+          
+          // Корректируем координаты с учетом масштаба
+          args.event.y = (args.event.y * 1.20);
+        }
+      }
+    };
+
+    Chart.register([hitCorrectionPlugin])
+
     const createBubbleChart = (ctx, incomes, expenses) => {
         // Анализируем данные для bubble chart
         const allTransactions = [...incomes, ...expenses].map(item => ({
             x: new Date(item.date).getMonth(), // Месяц по оси X
             y: item.amount,                    // Сумма по оси Y
-            r: Math.sqrt(item.amount) / 10     // Размер пузырька
+            r: ((item.amount))     // Размер пузырька
         }));
 
         return new Chart(ctx, {
@@ -130,9 +160,9 @@ export default {
                 data: incomes.map(item => ({
                     x: new Date(item.date).getMonth(),
                     y: item.amount,
-                    r: Math.sqrt(item.amount) / 10
+                    r: Math.sqrt(item.amount) / 25
                 })),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                backgroundColor: 'rgba(75, 255, 240, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)'
                 },
                 {
@@ -140,7 +170,7 @@ export default {
                 data: expenses.map(item => ({
                     x: new Date(item.date).getMonth(),
                     y: -item.amount, // Отрицательные значения для расходов
-                    r: Math.sqrt(item.amount) / 10
+                    r: Math.sqrt(item.amount) / 25
                 })),
                 backgroundColor: 'rgba(255, 99, 132, 0.6)',
                 borderColor: 'rgba(255, 99, 132, 1)'
@@ -148,9 +178,15 @@ export default {
             ]
             },
             options: {
+            aspectRatio: 1,
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
+             elements: {
+              point: {
+                hitRadius: 1 // Увеличивает зону наведения
+              }
+            },
+            plugins:  {
                 legend: {
                 labels: {
                     color: 'white'
@@ -189,7 +225,7 @@ export default {
                 y: {
                 title: {
                     display: true,
-                    text: 'Сумма (₽)',
+                    text: 'Сумма',
                     color: 'white'
                 },
                 ticks: {
@@ -274,6 +310,11 @@ export default {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          elements: {
+              point: {
+                hitRadius: 20 // Увеличивает зону наведения
+              }
+            },
           plugins: {
             legend: {
               labels: {
@@ -342,19 +383,25 @@ export default {
           ]
         },
         options: {
-          responsive: true,
-          maintainAspectRatio: false,
           plugins: {
             legend: {
               labels: {
                 color: 'white'
+              },
+            },
+            hitCorrectionPlugin : true
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          elements: {
+              point: {
+                hitRadius: 10 // Увеличивает зону наведения
               }
             },
-            tooltip: {
+          tooltip: {
               bodyColor: 'white',
               titleColor: 'white',
               backgroundColor: 'rgba(0,0,0,0.7)'
-            }
           },
           scales: {
             x: {
@@ -379,6 +426,118 @@ export default {
       });
     };
 
+    const createTopExpensesChart = (ctx, expenses) => {
+    const sorted = [...expenses].sort((a,b) => b.amount - a.amount).slice(0,5);
+    return new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: sorted.map(e => e.title),
+        datasets: [{
+          data: sorted.map(e => e.amount),
+          backgroundColor: chartColors[0],
+          borderRadius : 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y', // Горизонтальные столбцы
+        plugins: {
+          legend: {
+              display: false
+            }
+        },
+        scales: {
+          y: {
+            grid: {
+                    color: 'rgba(255,255,255,0.1)'
+                  },
+            ticks: {
+              color: 'white'
+            }
+          },      
+          x: {
+            grid: {
+                    color: 'rgba(255,255,255,0.1)'
+                  },
+            ticks: {
+              color: 'white'
+            }
+          }  
+        }
+           }
+      });
+    };
+
+    const createBalanceChart = (ctx, incomes, expenses) => {
+      const monthlyData = (expenses,incomes) => {
+        const balance = Array(12).fill(0);
+        incomes.forEach(item => {
+          balance[new Date(item.date).getMonth()] += item.amount;
+        });
+        expenses.forEach(item => {
+          balance[new Date(item.date).getMonth()] -= item.amount;
+        });
+        
+        // Накопленный итог
+        return balance.reduce((acc, val) => {
+          acc.push((acc[acc.length-1] || 0) + val);
+          return acc;
+        }, []);
+      };
+
+      return new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+          datasets: [{
+            type: 'line',
+            label: 'Накопления',
+            data: monthlyData(expenses,incomes),
+            borderColor: '#9966ff',
+            borderWidth: 3,
+            fill: false,
+            tension: 0.3
+          }, {
+            type: 'bar',
+            label: 'Доходы',
+            data: analyzeByMonth(incomes).data,
+            backgroundColor: '#4bc0c080'
+          }, {
+            type: 'bar',
+            label: 'Расходы',
+            data: analyzeByMonth(expenses).data.map(v => -v),
+            backgroundColor: '#ff638480'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend : {
+              labels: {color: 'white'}
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              title: {text: 'Сумма', display: true, color: 'white'},
+              ticks: {color: 'white'},
+              grid: {
+                      color: 'rgba(255,255,255,0.1)'
+                    },
+            },
+            x: {
+              grid: {
+                      color: 'rgba(255,255,255,0.1)'
+                    },
+              ticks: {color: 'white'}
+          }  
+          }
+        }
+      });
+    };
+
     onMounted(() => {
       const { incomes, expenses } = getData();
 
@@ -388,7 +547,7 @@ export default {
         incomes,
         expenses,
         'Финансовый контроль'
-    );
+    ).update();
 
       // Расходы по категориям (радарная диаграмма)
       const expenseCategories = analyzeByCategory(expenses, 'expense');
@@ -414,13 +573,26 @@ export default {
         incomes,
         expenses
       );
+
+      createTopExpensesChart(
+        topExpensesChart.value.getContext('2d'),
+        expenses
+      )
+
+      createBalanceChart(
+        BalanceChart.value.getContext('2d'),
+        incomes,
+        expenses
+      )
     });
 
     return {
       incomeChart,
       expenseChart,
       incomeTrendChart,
-      comparisonChart
+      comparisonChart,
+      topExpensesChart,
+      BalanceChart
     };
   }
 };
