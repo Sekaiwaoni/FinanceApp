@@ -40,12 +40,7 @@
 ]
 
 
-[{"id": 1753929433711, "title": "Выплата за рекламу", "amount": 40000, "category": "freelance", "date": "2025-07-31", "description": "test 1"},
-        {"id": 1753929545870, "title": "Аванс", "amount": 22000, "category": "salary", "date": "2025-07-31", "description": "test 2"},
-        {"id": 1753929567589, "title": "Зарплата", "amount": 35000, "category": "salary", "date": "2025-07-31", "description": ""},
-        {"id": 1753929603504, "title": "Инвестиции", "amount": 4000, "category": "investments", "date": "2025-07-31", "description": "test 4"},
-        {"id": 1753929757482, "title": "Novel.shop", "amount": 30000, "category": "business", "date": "2025-07-31", "description": ""},
-        {"id": 1753929810083, "title": "Новый год", "amount": 10000, "category": "gifts", "date": "2025-07-31", "description": ""},{"id":1753929433711,"title":"Выплата за рекламу","amount":40000,"category":"freelance","date":"2025-07-31","description":"test 1"},
+[{"id":1753929433711,"title":"Выплата за рекламу","amount":40000,"category":"freelance","date":"2025-07-31","description":"test 1"},
         {"id":1753929545870,"title":"Аванс","amount":22000,"category":"salary","date":"2025-07-31","description":"test 2"},
         {"id":1753929567589,"title":"Зарплата ","amount":35000,"category":"salary","date":"2025-07-31","description":""},
         {"id":1753929603504,"title":"Инвестиции","amount":4000,"category":"investments","date":"2025-07-31","description":"test 4"},

@@ -10,8 +10,6 @@ const {
   logout,
 } = useAuth()
 
-
-
 </script>
 
 <template>
